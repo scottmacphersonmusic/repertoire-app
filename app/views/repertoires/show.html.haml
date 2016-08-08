@@ -2,3 +2,7 @@
 
 = link_to 'Edit', edit_repertoire_path(@repertoire)
 = button_to 'Delete', @repertoire, method: :delete, data: {confirm: 'Are you Sure?'}
+
+%h4 Songs:
+= @songs.each do |song|
+  %p= song.title

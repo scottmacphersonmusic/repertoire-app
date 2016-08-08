@@ -5,7 +5,6 @@ class CreateSongs < ActiveRecord::Migration
       t.string :key
       t.string :quality
       t.integer :comfort
-      t.references :repertoire, index: true, foreign_key: true
 
       t.timestamps null: false
     end

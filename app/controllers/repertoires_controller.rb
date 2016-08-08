@@ -6,6 +6,7 @@ class RepertoiresController < ApplicationController
   end
 
   def show
+    @songs = @repertoire.songs
   end
 
   def new
