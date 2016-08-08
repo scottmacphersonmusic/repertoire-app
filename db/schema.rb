@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160807011958) do
+ActiveRecord::Schema.define(version: 20160808172148) do
 
   create_table "repertoires", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "name"
   end
 
   create_table "songs", force: :cascade do |t|
@@ -23,11 +24,8 @@ ActiveRecord::Schema.define(version: 20160807011958) do
     t.string   "key"
     t.string   "quality"
     t.integer  "comfort"
-    t.integer  "repertoire_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "songs", ["repertoire_id"], name: "index_songs_on_repertoire_id"
 
 end

@@ -1,2 +1,4 @@
-%h1 Repertoires#index
-%p Find me in app/views/repertoires/index.html.haml
+%h1 Welcome to the Repertoire App!
+
+- @repertoires.each do |r|
+  %h4= r.name

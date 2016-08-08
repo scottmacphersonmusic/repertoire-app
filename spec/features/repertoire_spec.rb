@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-describe 'repertoires' do
+describe 'Repertoires' do
   it 'lists all repertoires' do
-    Repertoire.create! name: 'Jazz Tunes'
+    Repertoire.create!(name: 'Jazz Tunes')
 
     visit root_path
 
