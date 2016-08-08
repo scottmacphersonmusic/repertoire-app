@@ -1,4 +1,6 @@
 %h1 Welcome to the Repertoire App!
 
+= link_to 'New Repertoire', new_repertoire_path
+
 - @repertoires.each do |r|
   %h4= r.name
