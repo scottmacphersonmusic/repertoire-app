@@ -1,5 +1,5 @@
 class RepertoiresController < ApplicationController
-  before_action :repertoire, only: [:show, :edit, :update]
+  before_action :repertoire, only: [:show, :edit, :update, :destroy]
 
   def index
     @repertoires = Repertoire.all
@@ -23,9 +23,14 @@ class RepertoiresController < ApplicationController
   end
 
   def update
-    if repertoire.update(repertoire_params)
+    if @repertoire.update(repertoire_params)
       redirect_to @repertoire, notice: 'Repertoire Updated'
     end
+  end
+
+  def destroy
+    @repertoire.destroy
+    redirect_to root_path, notice: 'Repertoire Deleted'
   end
 
   private

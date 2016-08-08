@@ -9,7 +9,7 @@ describe 'Repertoires' do
     expect(page).to have_content 'Jazz Tunes'
   end
 
-  it 'add a new repertoire' do
+  it 'add a repertoire' do
     visit root_path
     click_on 'New Repertoire'
     fill_in 'Name', with: 'Jazz Tunes'
@@ -30,5 +30,16 @@ describe 'Repertoires' do
 
     expect(page).to have_content 'Repertoire Updated'
     expect(page).to have_content 'Blues Tunes'
+  end
+
+  it 'delete a repertoire' do
+    Repertoire.create!(name: 'Jazz Tunes')
+
+    visit root_path
+    click_on 'Jazz Tunes'
+    click_on 'Delete'
+
+    expect(page).to have_content 'Repertoire Deleted'
+    expect(page).to_not have_content 'Jazz Tunes'
   end
 end
