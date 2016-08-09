@@ -51,4 +51,14 @@ describe 'Songs' do
     expect(page).to have_content 'Lunar'
     expect(page).to have_content '0'
   end
+
+  it 'delete song' do
+    visit root_path
+    click_on 'Jazz Tunes'
+    click_on 'Solar'
+    click_on 'Delete'
+
+    expect(page).to have_content 'Song Deleted'
+    expect(page).to_not have_content 'Solar'
+  end
 end

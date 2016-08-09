@@ -10,3 +10,4 @@
 
 %br
 = link_to 'Edit', edit_repertoire_song_path(@repertoire, @song)
+= button_to 'Delete', repertoire_song_path(@repertoire, @song), method: :delete, data: {confirm: 'Are you sure?'}

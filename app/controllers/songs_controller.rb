@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
   before_action :repertoire
-  before_action :song, only: [:show, :edit]
+  before_action :song, only: [:show, :edit, :destroy]
 
   def show
   end
@@ -24,6 +24,11 @@ class SongsController < ApplicationController
     if @song.save
       redirect_to repertoire_song_path(@repertoire, @song)
     end
+  end
+
+  def destroy
+    @song.destroy
+    redirect_to @repertoire, notice: 'Song Deleted'
   end
 
   private
