@@ -1,0 +1,12 @@
+%h2= @song.title
+
+%p
+  %strong Key:
+  = "#{@song.key} #{@song.quality}"
+
+%p
+  %strong Comfort:
+  = @song.comfort
+
+%br
+= link_to 'Edit', edit_repertoire_song_path(@repertoire, @song)

@@ -7,4 +7,4 @@
 
 %h4 Songs:
 - @songs.each do |song|
-  %p= song.title
+  = link_to song.title, repertoire_song_path(@repertoire, song)

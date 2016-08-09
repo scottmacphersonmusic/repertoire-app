@@ -25,7 +25,7 @@ describe 'Songs' do
     expect(page).to have_content 'Solar'
   end
 
-  it 'adds new song' do
+  it 'add new song' do
     visit root_path
     click_on 'Jazz Tunes'
     click_on 'New Song'
@@ -37,5 +37,18 @@ describe 'Songs' do
 
     expect(page).to have_content 'Song Added'
     expect(page).to have_content 'Autumn Leaves'
+  end
+
+  it 'edit song' do
+    visit root_path
+    click_on 'Jazz Tunes'
+    click_on 'Solar'
+    click_on 'Edit'
+    fill_in 'Title', with: 'Lunar'
+    select '0', from: 'Comfort'
+    click_on 'Update Song'
+
+    expect(page).to have_content 'Lunar'
+    expect(page).to have_content '0'
   end
 end

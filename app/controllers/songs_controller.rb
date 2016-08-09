@@ -1,5 +1,9 @@
 class SongsController < ApplicationController
   before_action :repertoire
+  before_action :song, only: [:show, :edit]
+
+  def show
+  end
 
   def new
     @song = Song.new
@@ -12,6 +16,16 @@ class SongsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @song = @repertoire.songs.build(song_params)
+    if @song.save
+      redirect_to repertoire_song_path(@repertoire, @song)
+    end
+  end
+
   private
 
   def song_params
@@ -20,5 +34,9 @@ class SongsController < ApplicationController
 
   def repertoire
     @repertoire = Repertoire.find(params[:repertoire_id])
+  end
+
+  def song
+    @song = Song.find(params[:id])
   end
 end
