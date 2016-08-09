@@ -1,5 +1,5 @@
 class RepertoiresController < ApplicationController
-  before_action :repertoire, only: [:show, :edit, :update, :destroy]
+  before_action :set_repertoire, only: [:show, :edit, :update, :destroy]
 
   def index
     @repertoires = Repertoire.all
@@ -34,13 +34,18 @@ class RepertoiresController < ApplicationController
     redirect_to root_path, notice: 'Repertoire Deleted'
   end
 
+  def practice
+    @repertoire = Repertoire.find(params[:repertoire_id])
+    @song = @repertoire.songs.sample
+  end
+
   private
 
   def repertoire_params
     params.require(:repertoire).permit(:name)
   end
 
-  def repertoire
+  def set_repertoire
     @repertoire = Repertoire.find(params[:id])
   end
 end

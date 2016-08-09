@@ -1,5 +1,7 @@
 %h2= @repertoire.name
 
+%h3= link_to 'Practice', repertoire_practice_path(@repertoire)
+
 = link_to 'Edit', edit_repertoire_path(@repertoire)
 = button_to 'Delete', @repertoire, method: :delete, data: {confirm: 'Are you Sure?'}
 %br
@@ -8,3 +10,4 @@
 %h4 Songs:
 - @songs.each do |song|
   = link_to song.title, repertoire_song_path(@repertoire, song)
+  %br
