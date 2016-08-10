@@ -1,0 +1,12 @@
+%h2= @instrument.name
+
+= link_to 'Edit', edit_instrument_path(@instrument)
+= button_to 'Delete', @instrument, method: :delete, data: {confirm: 'Are you sure?'}
+
+%p
+  %strong Key:
+  = @instrument.key
+
+%p
+  %strong Selected:
+  = @instrument.selected

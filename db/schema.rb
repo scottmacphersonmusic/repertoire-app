@@ -11,6 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160810014742) do
+
+  create_table "instruments", force: :cascade do |t|
+    t.string   "name"
+    t.string   "key"
+    t.boolean  "selected",   default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "repertoires", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "key"
+    t.string   "quality"
+    t.integer  "comfort"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "repertoire_id"
+  end
 
 end

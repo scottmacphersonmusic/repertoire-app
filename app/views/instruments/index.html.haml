@@ -1,0 +1,6 @@
+%h2 Instruments
+
+= link_to 'New Instrument', new_instrument_path
+
+- @instruments.each do |instrument|
+  = link_to instrument.name, instrument
