@@ -5,6 +5,8 @@
     %title RepertoireApp
     = csrf_meta_tags
   %body
+    .nav-bar
+      = link_to 'Instruments', instruments_path
 
     - flash.each do |key, value|
       %div{class: "alert alert-#{key}"}= value
