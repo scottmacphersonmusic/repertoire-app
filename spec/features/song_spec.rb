@@ -50,6 +50,7 @@ describe 'Songs' do
 
     expect(page).to have_content 'Lunar'
     expect(page).to have_content '0'
+    expect(page).to_not have_content 'Solar'
   end
 
   it 'delete song' do

@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
   before_action :repertoire
-  before_action :song, only: [:show, :edit, :destroy]
+  before_action :song, only: [:show, :edit, :update, :destroy]
 
   def show
   end
@@ -20,8 +20,7 @@ class SongsController < ApplicationController
   end
 
   def update
-    @song = @repertoire.songs.build(song_params)
-    if @song.save
+    if @song.update(song_params)
       redirect_to repertoire_song_path(@repertoire, @song)
     end
   end

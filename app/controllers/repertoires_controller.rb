@@ -6,7 +6,7 @@ class RepertoiresController < ApplicationController
   end
 
   def show
-    @songs = @repertoire.songs
+    @songs = @repertoire.songs.order(:title)
   end
 
   def new
@@ -37,6 +37,7 @@ class RepertoiresController < ApplicationController
   def practice
     @repertoire = Repertoire.find(params[:repertoire_id])
     @song = @repertoire.songs.sample
+    @instrument = Instrument.where(selected: true).sample
   end
 
   private
