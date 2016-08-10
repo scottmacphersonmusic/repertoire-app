@@ -1,6 +1,7 @@
 %h1 Welcome to the Repertoire App!
 
 = link_to 'New Repertoire', new_repertoire_path
+= link_to 'Instruments', instruments_path
 
 - @repertoires.each do |repertoire|
   %h4= link_to repertoire.name, repertoire
