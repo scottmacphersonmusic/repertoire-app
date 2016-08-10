@@ -21,14 +21,23 @@ describe 'practice' do
       quality: 'major',
       comfort: 3
     )
-  end
 
-  it 'picks a song at random' do
+    Instrument.create!(name: 'Flute', key: 'C')
+    Instrument.create!(name: 'Piano', key: 'C')
+    Instrument.create!(name: 'Trumpet', key: 'Bb', selected: false)
+
     visit root_path
     click_on 'Jazz Tunes'
     click_on 'Practice'
+  end
 
+  it 'picks a song at random' do
     titles = @repertoire.songs.map(&:title)
     expect(titles).to include(page.find('.song-title').text)
+  end
+
+  it 'picks a selected instrument at random' do
+    selected_instruments = Instrument.where(selected: true).map(&:name)
+    expect(selected_instruments).to include(page.find('.instrument').text)
   end
 end
