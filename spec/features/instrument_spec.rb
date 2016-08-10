@@ -30,4 +30,15 @@ describe 'Instrument' do
     expect(page).to have_content 'Instrument Added'
     expect(page).to have_content 'Trumpet'
   end
+
+  it 'edit an instrument' do
+    visit instruments_path
+    click_on 'Piano'
+    click_on 'Edit Instrument'
+    fill_in 'Name', with: 'Keyboard'
+    click_on 'Update Instrument'
+
+    expect(page).to have_content 'Instrument Updated'
+    expect(page).to have_content 'Keyboard'
+  end
 end

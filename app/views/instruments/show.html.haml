@@ -1,0 +1,11 @@
+%h2= @instrument.name
+
+= link_to 'Edit Instrument', edit_instrument_path(@instrument)
+
+%p
+  %strong Key:
+  = @instrument.key
+
+%p
+  %strong Selected:
+  = @instrument.selected
