@@ -1,10 +1,11 @@
 class InstrumentsController < ApplicationController
+  before_action :instrument, only: [:show, :edit, :update]
+
   def index
     @instruments = Instrument.all
   end
 
   def show
-    @instrument = Instrument.find(params[:id])
   end
 
   def new
@@ -19,11 +20,9 @@ class InstrumentsController < ApplicationController
   end
 
   def edit
-    @instrument = Instrument.find(params[:id])
   end
 
   def update
-    @instrument = Instrument.find(params[:id])
     if @instrument.update(instrument_params)
       redirect_to @instrument, notice: 'Instrument Updated'
     end
@@ -33,5 +32,9 @@ class InstrumentsController < ApplicationController
 
   def instrument_params
     params.require(:instrument).permit(:name, :key, :selected)
+  end
+
+  def instrument
+    @instrument = Instrument.find(params[:id])
   end
 end

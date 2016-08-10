@@ -1,0 +1,11 @@
+= form_for @instrument do |f|
+  = f.label :name
+  = f.text_field :name
+
+  = f.label :key
+  = f.text_field :key
+
+  = f.label :selected
+  = f.check_box :selected
+
+  = f.submit submit_text
