@@ -6,6 +6,7 @@
     = csrf_meta_tags
   %body
     .nav-bar
+      = link_to 'Repertoires', repertoires_path
       = link_to 'Instruments', instruments_path
 
     - flash.each do |key, value|
