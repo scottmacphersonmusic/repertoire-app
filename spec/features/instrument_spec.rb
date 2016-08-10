@@ -34,11 +34,20 @@ describe 'Instrument' do
   it 'edit an instrument' do
     visit instruments_path
     click_on 'Piano'
-    click_on 'Edit Instrument'
+    click_on 'Edit'
     fill_in 'Name', with: 'Keyboard'
     click_on 'Update Instrument'
 
     expect(page).to have_content 'Instrument Updated'
     expect(page).to have_content 'Keyboard'
+  end
+
+  it 'delete an instrument' do
+    visit instruments_path
+    click_on 'Flute'
+    click_on 'Delete'
+
+    expect(page).to have_content 'Instrument Deleted'
+    expect(page).to_not have_content 'Flute'
   end
 end

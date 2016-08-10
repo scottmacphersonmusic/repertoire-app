@@ -1,5 +1,5 @@
 class InstrumentsController < ApplicationController
-  before_action :instrument, only: [:show, :edit, :update]
+  before_action :instrument, only: [:show, :edit, :update, :destroy]
 
   def index
     @instruments = Instrument.all
@@ -26,6 +26,11 @@ class InstrumentsController < ApplicationController
     if @instrument.update(instrument_params)
       redirect_to @instrument, notice: 'Instrument Updated'
     end
+  end
+
+  def destroy
+    @instrument.destroy
+    redirect_to instruments_path, notice: 'Instrument Deleted'
   end
 
   private
