@@ -40,7 +40,6 @@ describe 'Songs' do
     expect(page).to have_content 'Error Creating Song'
     expect(page).to have_content "Title can't be blank"
     expect(page).to have_content "Key can't be blank"
-
   end
 
   it 'should be updated' do
@@ -57,6 +56,19 @@ describe 'Songs' do
     expect(page).to have_content 'Solar'
     expect(page).to have_content '0'
     expect(page).to_not have_content original_title
+  end
+
+  it 'should not be created without certain attributes' do
+    visit repertoire_path @song_1
+    click_on @song_1.title
+    click_on 'Edit'
+    fill_in 'Title', with: ''
+    fill_in 'Key', with: ''
+    click_on 'Update Song'
+
+    expect(page).to have_content 'Error Updating Song'
+    expect(page).to have_content "Title can't be blank"
+    expect(page).to have_content "Key can't be blank"
   end
 
   it 'should be deleted' do

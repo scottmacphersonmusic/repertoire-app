@@ -25,6 +25,9 @@ class SongsController < ApplicationController
   def update
     if @song.update(song_params)
       redirect_to repertoire_song_path(@repertoire, @song)
+    else
+      flash[:error] = 'Error Updating Song'
+      render :edit
     end
   end
 
