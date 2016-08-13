@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810014742) do
+ActiveRecord::Schema.define(version: 20160813071201) do
 
   create_table "instruments", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(version: 20160810014742) do
     t.boolean  "selected",   default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+  end
+
+  create_table "practice_sessions", force: :cascade do |t|
+    t.integer  "repertoire_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "repertoires", force: :cascade do |t|
