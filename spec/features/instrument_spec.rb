@@ -26,6 +26,17 @@ describe 'Instruments' do
     expect(page).to have_content 'Trumpet'
   end
 
+  it 'should not be created without name and key' do
+    visit new_instrument_path
+    fill_in 'Name', with: ''
+    fill_in 'Key', with: ''
+    click_on 'Add Instrument'
+
+    expect(page).to have_content 'Error Adding Instrument'
+    expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Key can't be blank"
+  end
+
   it 'should be updated' do
     original_name = @instrument.name
 

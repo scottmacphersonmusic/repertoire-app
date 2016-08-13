@@ -16,6 +16,9 @@ class InstrumentsController < ApplicationController
     @instrument = Instrument.new(instrument_params)
     if @instrument.save
       redirect_to instruments_path, notice: 'Instrument Added'
+    else
+      flash[:error] = 'Error Adding Instrument'
+      render :new
     end
   end
 
