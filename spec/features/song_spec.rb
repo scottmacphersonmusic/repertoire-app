@@ -3,20 +3,20 @@ require 'rails_helper'
 describe 'Songs' do
   before do
     @repertoire = create :repertoire
-    @song1 = create :song
-    @song2 = create :song
-    @repertoire.songs << [@song1, @song2]
+    @song_1 = create :song
+    @song_2 = create :song
+    @repertoire.songs << [@song_1, @song_2]
   end
 
   it 'should be listed under a given repertoire' do
     visit root_path
     click_on @repertoire.name
 
-    expect(page).to have_content @song1.title
-    expect(page).to have_content @song2.title
+    expect(page).to have_content @song_1.title
+    expect(page).to have_content @song_2.title
   end
 
-  it 'should be added' do
+  it 'should be created' do
     visit root_path
     click_on @repertoire.name
     click_on 'New Song'
@@ -30,12 +30,12 @@ describe 'Songs' do
     expect(page).to have_content 'Autumn Leaves'
   end
 
-  it 'should be edited' do
-    original_title = @song1.title
+  it 'should be updated' do
+    original_title = @song_1.title
 
     visit root_path
     click_on @repertoire.name
-    click_on @song1.title
+    click_on @song_1.title
     click_on 'Edit'
     fill_in 'Title', with: 'Solar'
     select '0', from: 'Comfort'
@@ -49,10 +49,10 @@ describe 'Songs' do
   it 'should be deleted' do
     visit root_path
     click_on @repertoire.name
-    click_on @song1.title
+    click_on @song_1.title
     click_on 'Delete'
 
     expect(page).to have_content 'Song Deleted'
-    expect(page).to_not have_content @song1.title
+    expect(page).to_not have_content @song_1.title
   end
 end

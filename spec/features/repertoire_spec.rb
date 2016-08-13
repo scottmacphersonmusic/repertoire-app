@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Repertoires' do
-  it 'list all repertoires' do
+  it 'should be listed' do
     repertoire = create :repertoire
 
     visit root_path
@@ -9,7 +9,7 @@ describe 'Repertoires' do
     expect(page).to have_content repertoire.name
   end
 
-  it 'add a repertoire' do
+  it 'should be created' do
     visit root_path
     click_on 'New Repertoire'
     fill_in 'Name', with: 'Jazz Tunes'
@@ -19,7 +19,7 @@ describe 'Repertoires' do
     expect(page).to have_content 'Jazz Tunes'
   end
 
-  it 'edit a repertoire' do
+  it 'should be updated' do
     repertoire = create :repertoire
 
     visit root_path
@@ -32,7 +32,7 @@ describe 'Repertoires' do
     expect(page).to have_content 'Blues Tunes'
   end
 
-  it 'delete a repertoire' do
+  it 'should be deleted' do
     repertoire = create :repertoire
 
     visit root_path
