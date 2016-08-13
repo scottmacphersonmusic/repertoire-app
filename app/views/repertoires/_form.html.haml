@@ -1,3 +1,10 @@
+- if @repertoire.errors.any?
+  #error_explanation
+    %h2= "#{pluralize(@repertoire.errors.count, 'error')} prohibited this repertoire from being saved:"
+    %ul
+      - @repertoire.errors.full_messages.each do |message|
+        %li= message
+
 = form_for @repertoire do |f|
   = f.label :name
   = f.text_field :name
