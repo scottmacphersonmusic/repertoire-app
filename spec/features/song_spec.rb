@@ -2,32 +2,23 @@ require 'rails_helper'
 
 describe 'Songs' do
   before do
-    repertoire = Repertoire.create!(name: 'Jazz Tunes')
-    repertoire.songs.create!(
-      title: 'Oleo',
-      key: 'Bb',
-      quality: 'major',
-      comfort: 5
-    )
-    repertoire.songs.create!(
-      title: 'Solar',
-      key: 'C',
-      quality: 'minor',
-      comfort: 3
-    )
+    @repertoire = create :repertoire
+    @song1 = create :song
+    @song2 = create :song
+    @repertoire.songs << [@song1, @song2]
   end
 
-  it 'listed under a given repertoire' do
+  it 'should be listed under a given repertoire' do
     visit root_path
-    click_on 'Jazz Tunes'
+    click_on @repertoire.name
 
-    expect(page).to have_content 'Oleo'
-    expect(page).to have_content 'Solar'
+    expect(page).to have_content @song1.title
+    expect(page).to have_content @song2.title
   end
 
-  it 'add new song' do
+  it 'should be added' do
     visit root_path
-    click_on 'Jazz Tunes'
+    click_on @repertoire.name
     click_on 'New Song'
     fill_in 'Title', with: 'Autumn Leaves'
     fill_in 'Key', with: 'G'
@@ -39,27 +30,29 @@ describe 'Songs' do
     expect(page).to have_content 'Autumn Leaves'
   end
 
-  it 'edit song' do
+  it 'should be edited' do
+    original_title = @song1.title
+
     visit root_path
-    click_on 'Jazz Tunes'
-    click_on 'Solar'
+    click_on @repertoire.name
+    click_on @song1.title
     click_on 'Edit'
-    fill_in 'Title', with: 'Lunar'
+    fill_in 'Title', with: 'Solar'
     select '0', from: 'Comfort'
     click_on 'Update Song'
 
-    expect(page).to have_content 'Lunar'
+    expect(page).to have_content 'Solar'
     expect(page).to have_content '0'
-    expect(page).to_not have_content 'Solar'
+    expect(page).to_not have_content original_title
   end
 
-  it 'delete song' do
+  it 'should be deleted' do
     visit root_path
-    click_on 'Jazz Tunes'
-    click_on 'Solar'
+    click_on @repertoire.name
+    click_on @song1.title
     click_on 'Delete'
 
     expect(page).to have_content 'Song Deleted'
-    expect(page).to_not have_content 'Solar'
+    expect(page).to_not have_content @song1.title
   end
 end

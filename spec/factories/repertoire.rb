@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :repertoire do |f|
-    f.sequence(:name) {|n| "Repertoire #{n}"}
+  factory :repertoire do
+    sequence(:name) { |n| "Repertoire_#{n}" }
   end
 end
