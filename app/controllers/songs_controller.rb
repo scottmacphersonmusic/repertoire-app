@@ -13,6 +13,9 @@ class SongsController < ApplicationController
     @song = @repertoire.songs.build(song_params)
     if @song.save
       redirect_to @repertoire, notice: 'Song Added'
+    else
+      flash[:error] = 'Error Creating Song'
+      render :new
     end
   end
 

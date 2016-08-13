@@ -30,6 +30,19 @@ describe 'Songs' do
     expect(page).to have_content 'Autumn Leaves'
   end
 
+  it 'should not be created without certain attributes' do
+    visit repertoire_path @song_1
+    click_on 'New Song'
+    fill_in 'Title', with: ''
+    fill_in 'Key', with: ''
+    click_on 'Add Song'
+
+    expect(page).to have_content 'Error Creating Song'
+    expect(page).to have_content "Title can't be blank"
+    expect(page).to have_content "Key can't be blank"
+
+  end
+
   it 'should be updated' do
     original_title = @song_1.title
 
