@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :repertoires do
     resources :songs
-    get 'practice'
   end
 
   resources :instruments

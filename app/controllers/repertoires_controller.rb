@@ -40,12 +40,6 @@ class RepertoiresController < ApplicationController
     redirect_to root_path, notice: 'Repertoire Deleted'
   end
 
-  def practice
-    @repertoire = Repertoire.find(params[:repertoire_id])
-    @song = @repertoire.songs.sample
-    @instrument = Instrument.where(selected: true).sample
-  end
-
   private
 
   def repertoire_params
