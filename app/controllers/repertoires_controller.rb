@@ -18,7 +18,7 @@ class RepertoiresController < ApplicationController
     if @repertoire.save
       redirect_to repertoires_path, notice: 'Repertoire Added'
     else
-      flash[:error] = 'Error Saving Repertoire'
+      flash[:error] = 'Error Creating Repertoire'
       render :new
     end
   end
@@ -29,6 +29,9 @@ class RepertoiresController < ApplicationController
   def update
     if @repertoire.update(repertoire_params)
       redirect_to @repertoire, notice: 'Repertoire Updated'
+    else
+      flash[:error] = "Error Updating Repertoire"
+      render :edit
     end
   end
 
