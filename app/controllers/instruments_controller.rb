@@ -28,6 +28,9 @@ class InstrumentsController < ApplicationController
   def update
     if @instrument.update(instrument_params)
       redirect_to @instrument, notice: 'Instrument Updated'
+    else
+      flash[:error] = 'Error Updating Instrument'
+      render :edit
     end
   end
 

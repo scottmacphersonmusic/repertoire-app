@@ -51,6 +51,17 @@ describe 'Instruments' do
     expect(page).to_not have_content original_name
   end
 
+  it 'should not be updated without name and key' do
+    visit edit_instrument_path @instrument
+    fill_in 'Name', with: ''
+    fill_in 'Key', with: ''
+    click_on 'Update Instrument'
+
+    expect(page).to have_content 'Error Updating Instrument'
+    expect(page).to have_content "Name can't be blank"
+    expect(page).to have_content "Key can't be blank"
+  end
+
   it 'should be deleted' do
     visit instruments_path
     click_on @instrument.name
