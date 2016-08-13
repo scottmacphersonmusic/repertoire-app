@@ -5,7 +5,6 @@ gem 'rails', '4.2.4'
 
 gem 'capybara', '2.5.0'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'factory_girl', '4.7.0'
 gem 'haml-rails', "~> 0.9"
 gem 'jquery-rails'
 gem 'launchy'
@@ -17,6 +16,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'factory_girl_rails', '4.7.0'
   gem 'pry-rails', '0.3.4'
   gem 'rspec-rails', '~> 3.5'
 end

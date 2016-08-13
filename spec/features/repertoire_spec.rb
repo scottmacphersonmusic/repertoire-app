@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe 'Repertoires' do
   it 'list all repertoires' do
-    Repertoire.create!(name: 'Jazz Tunes')
+    repertoire = create :repertoire
 
     visit root_path
 
-    expect(page).to have_content 'Jazz Tunes'
+    expect(page).to have_content repertoire.name
   end
 
   it 'add a repertoire' do
@@ -20,10 +20,10 @@ describe 'Repertoires' do
   end
 
   it 'edit a repertoire' do
-    Repertoire.create!(name: 'Jazz Tunes')
+    repertoire = create :repertoire
 
     visit root_path
-    click_on 'Jazz Tunes'
+    click_on repertoire.name
     click_on 'Edit'
     fill_in 'Name', with: 'Blues Tunes'
     click_on 'Update Repertoire'
@@ -33,13 +33,13 @@ describe 'Repertoires' do
   end
 
   it 'delete a repertoire' do
-    Repertoire.create!(name: 'Jazz Tunes')
+    repertoire = create :repertoire
 
     visit root_path
-    click_on 'Jazz Tunes'
+    click_on repertoire.name
     click_on 'Delete'
 
     expect(page).to have_content 'Repertoire Deleted'
-    expect(page).to_not have_content 'Jazz Tunes'
+    expect(page).to_not have_content repertoire.name
   end
 end
