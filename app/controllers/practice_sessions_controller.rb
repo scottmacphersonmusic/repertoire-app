@@ -4,17 +4,13 @@ class PracticeSessionsController < ApplicationController
     @practice_session = @repertoire.practice_sessions.new
 
     if @practice_session.save
-      # render nothing: true, status: :created
-      # suggestion = Suggestion.create!(
-      #   song_title: @practice_session.songs.sample.title,
-      # )
       suggestion = @practice_session.suggestions.create!(
-        song_title: @practice_session.songs.sample.title
+        song_title: @practice_session.songs.map(&:title).sample
       )
-      redirect_to suggestion
+      redirect_to suggestion, status: :moved_permanently
     else
       flash[:error] = 'Error Creating Practice Session'
-      redirect_to @repertoire
+      redirect_to @repertoire, status: :moved_permanently
     end
   end
 end

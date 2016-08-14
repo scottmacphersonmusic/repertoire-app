@@ -5,10 +5,7 @@ class SuggestionsController < ApplicationController
   end
 
   def create
-    practice_session = PracticeSession.find(params[:practice_session_id])
-    @suggestion = Suggestion.new(
-      song_title: practice_session.songs.sample.title
-    )
+    @suggestion = Suggestion.new(song_title: select_song_title)
     if @suggestion.save
       redirect_to @suggestion
     end

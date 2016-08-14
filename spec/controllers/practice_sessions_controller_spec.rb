@@ -11,7 +11,10 @@ describe PracticeSessionsController do
 
       post :create, { repertoire_id: @repertoire.id }
 
-      # expect(response).to have_http_status :created
+      suggestion = assigns[:practice_session].suggestions.first
+
+      expect(response).to redirect_to suggestion_path suggestion
+      expect(response).to have_http_status :moved_permanently
       expect(PracticeSession.count).to eq 1
     end
 
@@ -20,8 +23,9 @@ describe PracticeSessionsController do
 
       post :create, { repertoire_id: @repertoire.id }
 
-      expect(PracticeSession.count).to eq 0
       expect(response).to redirect_to repertoire_path @repertoire
+      expect(response).to have_http_status :moved_permanently
+      expect(PracticeSession.count).to eq 0
       expect(flash[:error]).to match 'Error Creating Practice Session'
     end
   end
