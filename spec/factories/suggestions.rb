@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :suggestion do
-    song_title "MyString"
-    key "MyString"
-    instrument "MyString"
-    practice_session nil
+    sequence(:song_title) { |n | "song_title_#{n}" }
+    key "C"
+    instrument "Piano"
   end
 end
