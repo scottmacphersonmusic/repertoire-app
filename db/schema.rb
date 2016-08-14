@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160813071201) do
+ActiveRecord::Schema.define(version: 20160814015607) do
 
   create_table "instruments", force: :cascade do |t|
     t.string   "name"
@@ -42,5 +42,16 @@ ActiveRecord::Schema.define(version: 20160813071201) do
     t.datetime "updated_at",    null: false
     t.integer  "repertoire_id"
   end
+
+  create_table "suggestions", force: :cascade do |t|
+    t.string   "song_title"
+    t.string   "key"
+    t.string   "instrument"
+    t.integer  "practice_session_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "suggestions", ["practice_session_id"], name: "index_suggestions_on_practice_session_id"
 
 end

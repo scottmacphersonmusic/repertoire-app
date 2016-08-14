@@ -3,6 +3,7 @@ class PracticeSession < ActiveRecord::Base
 
   belongs_to :repertoire
   has_many :songs, through: :repertoire
+  has_many :suggestions
 
   def repertoire_has_song
     if repertoire.songs.none?
