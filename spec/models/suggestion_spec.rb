@@ -18,13 +18,15 @@ describe Suggestion do
     expect(song_titles).to include(@suggestion.select_song_title)
   end
 
-  it 'should select an instrument at random' do
+  it 'should select an instrument name at random' do
     3.times do
       create :instrument, selected: true
       create :instrument, selected: false
     end
-    selected_instruments = Instrument.where(selected: true).map(&:name)
+    selected_instrument_names = Instrument.where(selected: true).map(&:name)
 
-    expect(selected_instruments).to include(@suggestion.select_instrument)
+    expect(
+      selected_instrument_names
+    ).to include(@suggestion.select_instrument_name)
   end
 end

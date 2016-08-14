@@ -9,7 +9,13 @@ class Suggestion < ActiveRecord::Base
     songs.map(&:title).sample
   end
 
-  def select_instrument
-    Instrument.where(selected: true).map(&:name).sample
+  def select_instrument_name
+    selected_instruments.map(&:name).sample
+  end
+
+  private
+
+  def selected_instruments
+    Instrument.where(selected: true)
   end
 end
