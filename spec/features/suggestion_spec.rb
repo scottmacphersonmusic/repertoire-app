@@ -1,14 +1,20 @@
 require 'rails_helper'
 
 describe 'Suggestions' do
-  it 'should display a random song' do
-    repertoire = create :repertoire
-    5.times { repertoire.songs << create(:song) }
+  before do
+    @repertoire = create :repertoire
+    @song = create :song, comfort: 1
+    @repertoire.songs << @song
 
-    visit repertoire_path repertoire
+    visit repertoire_path @repertoire
     click_on 'Practice'
+  end
 
-    titles = repertoire.songs.map(&:title)
-    expect(titles).to include(page.find('.song-title').text)
+  it 'should display a song' do
+    expect(page.find('.suggested-song-title').text).to match @song.title
+  end
+
+  it 'should display a key' do
+    expect(page.find('.suggested-key').text).to eq @song.key
   end
 end
