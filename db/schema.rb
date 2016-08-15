@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160815013952) do
+ActiveRecord::Schema.define(version: 20160815035629) do
 
   create_table "instruments", force: :cascade do |t|
     t.string   "name"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160815013952) do
     t.integer  "practice_session_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "song_id"
   end
 
   add_index "suggestions", ["practice_session_id"], name: "index_suggestions_on_practice_session_id"

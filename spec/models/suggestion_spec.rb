@@ -4,35 +4,64 @@ describe Suggestion do
   before do
     @repertoire = create :repertoire
     3.times { @repertoire.songs << create(:song) }
-    practice_session = create(:practice_session, repertoire_id: @repertoire.id)
-    create :instrument
-    @suggestion = create(:suggestion, practice_session_id: practice_session.id)
+    @practice_session = create(:practice_session, repertoire_id: @repertoire.id)
   end
 
-  it 'should have a method to access available songs' do
-    expect(@suggestion.songs.map(&:id)).to eq @repertoire.songs.map(&:id)
+  it 'should find available songs' do
+    suggestion = create(:suggestion, practice_session_id: @practice_session.id)
+
+    expect(suggestion.songs.map(&:id)).to eq @repertoire.songs.map(&:id)
   end
 
-  it 'should select a song title at random' do
-    song_titles = @suggestion.songs.map(&:title)
+  it 'should find associated song' do
+    suggestion = create(:suggestion, practice_session_id: @practice_session.id)
 
-    expect(song_titles).to include(@suggestion.select_song_title)
+    expect(suggestion.song).to be_an_instance_of Song
+  end
+
+  it 'should select a song at random' do
+    suggestion = create(:suggestion, practice_session_id: @practice_session.id)
+
+    expect(@repertoire.songs).to include(suggestion.select_song)
   end
 
   it 'should select an instrument name at random' do
-    3.times do
+    2.times do
       create :instrument, selected: true
       create :instrument, selected: false
     end
     selected_instrument_names = Instrument.where(selected: true).map(&:name)
+    suggestion = create(:suggestion, practice_session_id: @practice_session.id)
 
     expect(
       selected_instrument_names
-    ).to include(@suggestion.select_instrument_name)
+    ).to include(suggestion.select_instrument_name)
   end
 
-  it 'should set song_title and instrument_name before save' do
-    expect(@suggestion.song_title).to be_an_instance_of String
-    expect(@suggestion.instrument_name).to be_an_instance_of String
+  it 'should select key as original key if comfort is 0-3' do
+    @repertoire.songs.each do |song|
+      song.update_attributes comfort: 3, key: 'C'
+    end
+    suggestion = create(:suggestion, practice_session_id: @practice_session.id)
+
+    expect(suggestion.select_key).to eq 'C'
+  end
+
+  it 'should set random key if comfort is 4-5' do
+    @repertoire.songs.each do |song|
+      song.update_attributes comfort: 4, key: 'C'
+    end
+    suggestion = create(:suggestion, practice_session_id: @practice_session.id)
+
+    expect(Suggestion::KEYS).to include(suggestion.key)
+  end
+
+  it 'should set song_title, key and instrument_name before save' do
+    create :instrument
+    suggestion = create(:suggestion, practice_session_id: @practice_session.id)
+
+    expect(suggestion.song_title).to be_an_instance_of String
+    expect(suggestion.key).to be_an_instance_of String
+    expect(suggestion.instrument_name).to be_an_instance_of String
   end
 end
