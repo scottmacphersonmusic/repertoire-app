@@ -1,6 +1,6 @@
 %h2= @repertoire.name
 
-= link_to 'Practice', repertoire_practice_sessions_path(@repertoire), method: :post
+= button_to 'Practice', repertoire_practice_sessions_path(@repertoire), method: :post
 
 = link_to 'Edit', edit_repertoire_path(@repertoire)
 = button_to 'Delete', @repertoire, method: :delete, data: {confirm: 'Are you Sure?'}

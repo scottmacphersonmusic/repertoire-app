@@ -1,7 +1,9 @@
 %h2= "Practicing: #{@practice_session.repertoire.name}"
 
-.suggested-song-title= @suggestion.song_title
-
-.suggested-key= @suggestion.key
-
-.suggested-instrument= @suggestion.instrument_name
+.suggestion
+  %strong Play:
+  %span.suggested-song-title= @suggestion.song_title
+  %strong In:
+  %span.suggested-key= @suggestion.key
+  %strong On:
+  %span.suggested-instrument= @suggestion.instrument_name

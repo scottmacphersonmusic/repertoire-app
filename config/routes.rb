@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :repertoires do
     resources :songs
     resources :practice_sessions, only: :create
-    end
+  end
 
   resources :instruments
   resources :suggestions, only: [:show, :create]
