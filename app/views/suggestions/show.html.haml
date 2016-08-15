@@ -7,3 +7,5 @@
   %span.suggested-key= @suggestion.key
   %strong On:
   %span.suggested-instrument= @suggestion.instrument_name
+
+= button_to 'Next', suggestions_path(@suggestion, practice_session_id: @practice_session.id), method: :post

@@ -22,4 +22,12 @@ describe 'Suggestions' do
   it 'should display an instrument' do
     expect(page.find('.suggested-instrument').text).to eq @instrument.name
   end
+
+  it 'should display a "next" button to genereate next suggestion' do
+    click_on 'Next'
+
+    expect(page.find('.suggested-song-title').text).to match(/\S*/)
+    expect(page.find('.suggested-key').text).to match(/\S*/)
+    expect(page.find('.suggested-instrument').text).to match(/\S*/)
+  end
 end
