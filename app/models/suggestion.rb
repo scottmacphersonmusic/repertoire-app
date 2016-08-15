@@ -1,6 +1,11 @@
 class Suggestion < ActiveRecord::Base
   belongs_to :practice_session
 
+  before_save do
+    self.song_title = select_song_title
+    self.instrument_name = select_instrument_name
+  end
+
   def songs
     practice_session.songs
   end

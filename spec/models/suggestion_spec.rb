@@ -5,7 +5,8 @@ describe Suggestion do
     @repertoire = create :repertoire
     3.times { @repertoire.songs << create(:song) }
     practice_session = create(:practice_session, repertoire_id: @repertoire.id)
-    @suggestion = practice_session.suggestions.create!
+    create :instrument
+    @suggestion = create(:suggestion, practice_session_id: practice_session.id)
   end
 
   it 'should have a method to access available songs' do
@@ -28,5 +29,10 @@ describe Suggestion do
     expect(
       selected_instrument_names
     ).to include(@suggestion.select_instrument_name)
+  end
+
+  it 'should set song_title and instrument_name before save' do
+    expect(@suggestion.song_title).to be_an_instance_of String
+    expect(@suggestion.instrument_name).to be_an_instance_of String
   end
 end
