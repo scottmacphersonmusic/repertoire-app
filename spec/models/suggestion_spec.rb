@@ -47,6 +47,7 @@ describe Suggestion do
     expect(suggestion.select_key).to eq 'C'
   end
 
+  # this doesn't actually test they key could be different from the original... :(
   it 'should set random key if comfort is 4-5' do
     @repertoire.songs.each do |song|
       song.update_attributes comfort: 4, key: 'C'
