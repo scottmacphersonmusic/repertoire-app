@@ -58,6 +58,17 @@ describe 'Songs' do
     expect(page).to_not have_content original_title
   end
 
+  it 'should be mass updatable' do
+    visit repertoire_path @repertoire
+    find("input#songs_#{@song_1.id}_selected").set(false)
+    find("input#songs_#{@song_2.id}_selected").set(false)
+    click_on 'Update Selected Songs'
+
+    expect(page).to have_content 'Selected Songs Updated'
+    expect(find("input#songs_#{@song_1.id}_selected")[:checked]).to eq false
+    expect(find("input#songs_#{@song_2.id}_selected")[:checked]).to eq false
+  end
+
   it 'should not be created without certain attributes' do
     visit repertoire_path @song_1
     click_on @song_1.title

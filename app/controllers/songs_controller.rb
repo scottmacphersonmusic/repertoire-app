@@ -31,6 +31,14 @@ class SongsController < ApplicationController
     end
   end
 
+  def update_songs
+    params[:songs].each do |song_id, attributes|
+      song = Song.find(song_id)
+      song.update_attributes(attributes.permit(:selected))
+    end
+    redirect_to @repertoire, notice: 'Selected Songs Updated'
+  end
+
   def destroy
     @song.destroy
     redirect_to @repertoire, notice: 'Song Deleted'

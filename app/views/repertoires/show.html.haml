@@ -8,6 +8,10 @@
 = link_to 'New Song', new_repertoire_song_path(@repertoire)
 
 %h4 Songs:
-- @songs.each do |song|
-  = link_to song.title, repertoire_song_path(@repertoire, song)
-  %br
+= form_tag repertoire_update_songs_path(@repertoire) do
+  - @songs.each do |song|
+    = fields_for 'songs[]', song do |sf|
+      = sf.check_box :selected
+      = link_to song.title, repertoire_song_path(@repertoire, song)
+      %br
+  = submit_tag 'Update Selected Songs'
