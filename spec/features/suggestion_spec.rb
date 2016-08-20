@@ -16,7 +16,7 @@ describe 'Suggestions' do
   end
 
   it 'should display a key' do
-    expect(page.find('.suggested-key').text).to eq @song.key
+    expect(page.find('.suggested-key').text).to eq "#{@song.key} #{@song.quality}"
   end
 
   it 'should display an instrument' do

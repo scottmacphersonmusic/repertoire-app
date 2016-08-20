@@ -4,7 +4,7 @@
   %strong Play:
   %span.suggested-song-title= @suggestion.song_title
   %strong In:
-  %span.suggested-key= @suggestion.key
+  %span.suggested-key #{@suggestion.key} #{@suggestion.song.quality}
   %strong On:
   %span.suggested-instrument= @suggestion.instrument_name
 
