@@ -60,14 +60,17 @@ describe 'Songs' do
 
   it 'should update multiple songs selected status' do
     visit repertoire_path @repertoire
-    find("input#songs_#{@song_1.id}_selected").set(false)
-    find("input#songs_#{@song_2.id}_selected").set(false)
+    checkbox_input_1 = find "input#songs_#{@song_1.id}_selected"
+    checkbox_input_2 = find "input#songs_#{@song_2.id}_selected"
+
+    checkbox_input_1.set false
+    checkbox_input_2.set false
     click_on 'Update Selected Songs'
 
     expect(page).to have_content 'Selected Songs Updated'
     expect(page).to have_content '0 of 2 selected'
-    expect(find("input#songs_#{@song_1.id}_selected")[:checked]).to eq false
-    expect(find("input#songs_#{@song_2.id}_selected")[:checked]).to eq false
+    expect(checkbox_input_1[:checked]).to eq false
+    expect(checkbox_input_2[:checked]).to eq false
   end
 
   it 'should not be created without certain attributes' do
