@@ -22,7 +22,7 @@ describe 'Songs' do
     click_on 'New Song'
     fill_in 'Title', with: 'Autumn Leaves'
     fill_in 'Key', with: 'G'
-    fill_in 'Quality', with: 'minor'
+    select 'minor', from: 'Quality'
     select '5', from: 'Comfort'
     click_on 'Add Song'
 
