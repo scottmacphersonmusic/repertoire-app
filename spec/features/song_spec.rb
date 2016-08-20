@@ -65,6 +65,7 @@ describe 'Songs' do
     click_on 'Update Selected Songs'
 
     expect(page).to have_content 'Selected Songs Updated'
+    expect(page).to have_content '0 of 2 selected'
     expect(find("input#songs_#{@song_1.id}_selected")[:checked]).to eq false
     expect(find("input#songs_#{@song_2.id}_selected")[:checked]).to eq false
   end
