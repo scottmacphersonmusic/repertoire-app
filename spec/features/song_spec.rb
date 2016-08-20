@@ -58,7 +58,7 @@ describe 'Songs' do
     expect(page).to_not have_content original_title
   end
 
-  it 'should be mass updatable' do
+  it 'should update multiple songs selected status' do
     visit repertoire_path @repertoire
     find("input#songs_#{@song_1.id}_selected").set(false)
     find("input#songs_#{@song_2.id}_selected").set(false)
