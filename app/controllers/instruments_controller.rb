@@ -34,6 +34,16 @@ class InstrumentsController < ApplicationController
     end
   end
 
+  def update_instruments
+    Instrument.transaction do
+      params[:instruments].each do |id, attributes|
+        instrument = Instrument.find id
+        instrument.update_attributes attributes.permit(:selected)
+      end
+      redirect_to instruments_path, notice: 'Selected Instruments Updated'
+    end
+  end
+
   def destroy
     @instrument.destroy
     redirect_to instruments_path, notice: 'Instrument Deleted'

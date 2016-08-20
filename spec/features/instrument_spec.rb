@@ -70,4 +70,20 @@ describe 'Instruments' do
     expect(page).to have_content 'Instrument Deleted'
     expect(page).to_not have_content @instrument.name
   end
+
+  it 'should be mass updatable' do
+    instrument_2 = create :instrument, selected: true
+
+    visit instruments_path
+    instrument_input_1 = find "input#instruments_#{@instrument.id}_selected"
+    instrument_input_2 = find "input#instruments_#{instrument_2.id}_selected"
+
+    instrument_input_1.set false
+    instrument_input_2.set false
+    click_on 'Update Selected Instruments'
+
+    expect(page).to have_content 'Selected Instruments Updated'
+    expect(instrument_input_1[:checked]).to eq false
+    expect(instrument_input_2[:checked]).to eq false
+  end
 end

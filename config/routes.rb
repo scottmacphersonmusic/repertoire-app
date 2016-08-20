@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
 
   resources :instruments
+  post 'update_instruments', to: 'instruments#update_instruments'
   resources :suggestions, only: [:show, :create]
 
   root 'repertoires#index'

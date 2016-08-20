@@ -2,5 +2,10 @@
 
 = link_to 'New Instrument', new_instrument_path
 
-- @instruments.each do |instrument|
-  = link_to instrument.name, instrument
+= form_tag update_instruments_path do
+  - @instruments.each do |instrument|
+    = fields_for 'instruments[]', instrument do |f|
+      = f.check_box :selected
+      = link_to instrument.name, instrument
+    %br
+  = submit_tag 'Update Selected Instruments'
