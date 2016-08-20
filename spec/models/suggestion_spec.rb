@@ -13,19 +13,22 @@ describe Suggestion do
     expect(suggestion.songs.map(&:id)).to eq @repertoire.songs.map(&:id)
   end
 
-  it 'should find associated song' do
+  it 'should find associated Song' do
     suggestion = create(:suggestion, practice_session_id: @practice_session.id)
 
     expect(suggestion.song).to be_an_instance_of Song
   end
 
-  it 'should select a song at random' do
+  it 'should select a :selected Song at random' do
+    3.times { @repertoire.songs << create(:song, selected: false) }
     suggestion = create(:suggestion, practice_session_id: @practice_session.id)
 
-    expect(@repertoire.songs).to include(suggestion.select_song)
+    expect(
+      @repertoire.songs.where(selected: true)
+    ).to include(suggestion.select_song)
   end
 
-  it 'should select an instrument name at random' do
+  it 'should select an Instrument name at random' do
     2.times do
       create :instrument, selected: true
       create :instrument, selected: false
@@ -47,7 +50,7 @@ describe Suggestion do
     expect(suggestion.select_key).to eq 'C'
   end
 
-  # this doesn't actually test they key could be different from the original... :(
+  # this doesn't actually test that the key could be different from the original
   it 'should set random key if comfort is 4-5' do
     @repertoire.songs.each do |song|
       song.update_attributes comfort: 4, key: 'C'

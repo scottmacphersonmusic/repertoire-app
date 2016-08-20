@@ -19,7 +19,7 @@ class Suggestion < ActiveRecord::Base
   end
 
   def select_song
-    songs.sample
+    songs.where(selected: true).sample
   end
 
   def select_key
